@@ -1,30 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Sorvete } from '../models/sorvete';
-import { CrudService } from './crud.service';
-import { UtilityComponent } from '../services/Utility';
+import { CrudService } from '../app/crud.service';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  providers: [CrudService, UtilityComponent]
-})
-
-export class AppComponent implements OnInit {
+@Injectable()
+export class UtilityComponent {
   title = 'app';
   sorvetes: Sorvete[] = [];
   newSorvete = new Sorvete();
 
   constructor(private crudService: CrudService) {
-  }
-
-  public ngOnInit(): void {
-    this.crudService
-      .getAllSorvetes()
-      .subscribe(
-        (sorvetes) => {
-        this.sorvetes = sorvetes;
-      });
   }
 
   onAddSorvete(sorvete: Sorvete) {
